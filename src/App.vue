@@ -1,16 +1,19 @@
-<script setup>
-import { reactive } from 'vue'
+<script>
+import { ref } from 'vue'
 
-const product = reactive({
-  name: 'Socks'
-})
+export default {
+  setup() {
+    const product = ref('Socks')
 
-setTimeout(() => {
-  product.name = "New Socks"
-}, 1000)
+    setTimeout(() => {
+      product.value = "New Socks"
+    }, 1000)
 
+    return { product }
+  }
+}
 </script>
 
 <template>
-  <h1>{{ product.name }}</h1>
+  <h1>{{ product }}</h1>
 </template>
