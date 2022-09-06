@@ -1,15 +1,14 @@
 <script>
-import { ref } from 'vue'
-
 export default {
-  setup() {
-    const product = ref('Socks')
-
+  data() {
+    return {
+      product: 'Socks'
+    }
+  },
+  created() {
     setTimeout(() => {
-      product.value = "New Socks"
+      this.product = "New Socks"
     }, 1000)
-
-    return { product }
   }
 }
 </script>
