@@ -1,18 +1,20 @@
 <script setup>
 import { ref } from 'vue'
-
-const useChangeWithDelay = function(state, newVal, delay) {
-  setTimeout(() => {
-    state.value = newVal
-  }, delay)
-}
+import socksGreenImage from '@/assets/images/socks_green.jpg'
 
 const product = ref('Socks')
-  
-useChangeWithDelay(product, 'New Socks', 1000)
 
 </script>
 
 <template>
-  <h1>{{ product }}</h1>
+  <div class="product-display">
+    <div class="product-container">
+      <div class="product-image">
+        <img v-bind:src="socksGreenImage">
+      </div>
+      <div class="product-info">
+        <h1>{{ product }}</h1>
+      </div>
+    </div>
+  </div>
 </template>
