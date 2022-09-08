@@ -37,7 +37,8 @@ const updateImage = (variantImage) => image.value = variantImage
         <ul>
           <li v-for="detail in details">{{ detail }}</li>
         </ul>
-        <div v-for="variant in variants" 
+        <div 
+          v-for="variant in variants" 
           key="variant.key"
           @mouseover="updateImage(variant.image)"
         >
