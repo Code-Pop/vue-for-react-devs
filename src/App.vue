@@ -43,8 +43,16 @@ const updateImage = (variantImage) => image.value = variantImage
           @mouseover="updateImage(variant.image)"
           class="color-circle"
           :style="{ backgroundColor: variant.color }"
-        ></div>
-        <button class="button" v-on:click="addToCart">Add to cart</button>
+        >
+        </div>
+        <button
+          class="button" 
+          :class="{ disabledButton: !inStock }"
+          :disabled="!inStock"
+          v-on:click="addToCart"
+        >
+          Add to cart
+        </button>
       </div>
     </div>
   </div>
