@@ -18,7 +18,9 @@ const cart = ref(0)
 
 const addToCart = () => cart.value += 1
 
-const updateImage = (variantImage) => image.value = variantImage
+const updateImage = (variantImage) => {
+  image.value = variantImage
+}
 
 </script>
   
