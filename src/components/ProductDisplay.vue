@@ -34,6 +34,15 @@ const inStock = computed(() => {
   return variants.value[selectedVariant.value].quantity > 0
 })
 
+const shipping = computed(() => {
+  if (props.premium) {
+    return 'Free'
+  }
+  else {
+    return 2.99
+  }
+})
+
 const addToCart = () => cart.value += 1
 
 const updateVariant = (index) => {
@@ -51,6 +60,7 @@ const updateVariant = (index) => {
         <h1>{{ title }}</h1>
         <p v-if="inStock">In Stock</p>
         <p v-else>Out of Stock</p>
+        <p>Shipping: {{ shipping }}</p>
         <ul>
           <li v-for="detail in details">{{ detail }}</li>
         </ul>
