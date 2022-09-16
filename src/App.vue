@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 import socksGreenImage from './assets/images/socks_green.jpeg'
 import socksBlueImage from './assets/images/socks_blue.jpeg'
 
@@ -18,6 +18,8 @@ const variants = ref([
 
 const cart = ref(0)
 
+const title = computed(() => brand.value + ' ' + product.value)
+
 const addToCart = () => cart.value += 1
 
 const updateImage = (variantImage) => image.value = variantImage
@@ -33,7 +35,7 @@ const updateImage = (variantImage) => image.value = variantImage
         <img v-bind:src="image">
       </div>
       <div class="product-info">
-        <h1>{{ brand + ' ' + product }}</h1>
+        <h1>{{ title }}</h1>
         <p v-if="inStock">In Stock</p>
         <p v-else>Out of Stock</p>
         <ul>
