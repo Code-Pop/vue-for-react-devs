@@ -12,8 +12,8 @@ const inStock = ref(false)
 const details = ref(['50% cotton', '30% wool', '20% polyester'])
 
 const variants = ref([
-  { id: 2234, color: 'green', image: socksGreenImage },
-  { id: 2235, color: 'blue', image: socksBlueImage },
+  { id: 2234, color: 'green', image: socksGreenImage, quantity: 50 },
+  { id: 2235, color: 'blue', image: socksBlueImage, quantity: 0 },
 ])
 
 const cart = ref(0)
