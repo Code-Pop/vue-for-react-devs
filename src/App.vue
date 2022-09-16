@@ -6,8 +6,7 @@ import socksBlueImage from './assets/images/socks_blue.jpeg'
 const product = ref('Socks')
 const brand = ref('Vue Mastery')
 
-const image = ref(socksGreenImage)
-const inStock = ref(false)
+const selectedVariant = ref(0)
   
 const details = ref(['50% cotton', '30% wool', '20% polyester'])
 
@@ -18,11 +17,23 @@ const variants = ref([
 
 const cart = ref(0)
 
-const title = computed(() => brand.value + ' ' + product.value)
+const title = computed(() => {
+  return brand.value + ' ' + product.value
+})
+
+const image = computed(() => {
+  return variants.value[selectedVariant.value].image
+})
+
+const inStock = computed(() => {
+  return variants.value[selectedVariant.value].quantity > 0
+})
 
 const addToCart = () => cart.value += 1
 
-const updateImage = (variantImage) => image.value = variantImage
+const updateVariant = (index) => {
+  selectedVariant.value = index
+}
 
 </script>
   
@@ -42,9 +53,9 @@ const updateImage = (variantImage) => image.value = variantImage
           <li v-for="detail in details">{{ detail }}</li>
         </ul>
         <div 
-          v-for="variant in variants" 
+          v-for="(variant, index) in variants" 
           key="variant.key"
-          @mouseover="updateImage(variant.image)"
+          @mouseover="updateVariant(index)"
           class="color-circle"
           :style="{ backgroundColor: variant.color }"
         >
