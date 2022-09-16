@@ -3,6 +3,13 @@ import { ref, computed } from 'vue'
 import socksGreenImage from '@/assets/images/socks_green.jpeg'
 import socksBlueImage from '@/assets/images/socks_blue.jpeg'
 
+const props = defineProps({
+  premium: {
+    type: Boolean,
+    required: true
+  }
+})
+
 const product = ref('Socks')
 const brand = ref('Vue Mastery')
 
