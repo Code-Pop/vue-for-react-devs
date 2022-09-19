@@ -1,15 +1,25 @@
-<script>
+<script setup>
 import { reactive } from 'vue'
 
-const review = reactive({
+const emit = defineEmits(['review-submitted'])
+
+const getDefaultFormData = () => ({
   name: '',
   content: '',
   rating: null
 })
+
+const review = reactive(getDefaultFormData())
+
+const onSubmit = () => {
+  const reviewData = JSON.parse(JSON.stringify(review))
+  emit('review-submitted', reviewData)
+  Object.assign(review, getDefaultFormData())
+}
 </script>
 
 <template>
-  <form class="review-form">
+  <form class="review-form" @submit.prevent="onSubmit">
     <h3>Leave a review</h3>
     <label for="name">Name:</label>
     <input id="name" v-model="review.name">
