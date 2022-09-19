@@ -95,10 +95,13 @@ const addReview = (review) => {
       </div>
     </div>
     <ReviewList :reviews="reviews">
-      <template v-slot="{ review }">
+      <template #heading>
+        Reviews:
+      </template>
+      <template #item="{ review }">
         <span>{{ review.name }} gave this {{ review.rating }} stars</span>
         <br/>
-        <span>{{ review.review }}</span>
+        <span>{{ review.content }}</span>
       </template>
     </ReviewList>
     <ReviewForm @review-submitted="addReview"></ReviewForm>

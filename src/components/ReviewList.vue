@@ -1,4 +1,6 @@
 <script setup>
+import { useSlots } from 'vue'
+
 defineProps({
   reviews: {
     type: Array,
@@ -9,10 +11,10 @@ defineProps({
 
 <template>
   <div class="review-container">
-    <h3>Reviews:</h3>
+    <h3><slot name="heading"></slot></h3>
     <ul>
       <li v-for="(review, index) in reviews" :key="index">
-        <slot :review="review"></slot>
+        <slot name="item" :review="review"></slot>
       </li>
     </ul>
   </div>
