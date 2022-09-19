@@ -94,14 +94,10 @@ const addReview = (review) => {
         </button>
       </div>
     </div>
-    <ReviewList>
-      <ul>
-        <li v-for="(review, index) in reviews" :key="index">
-          <span>{{ review.name }} gave this {{ review.rating }} stars</span>
-          <br/>
-          <span>{{ review.review }}</span>
-        </li>
-      </ul>
+    <ReviewList :reviews="reviews" v-slot="{ review }">
+      <span>{{ review.name }} gave this {{ review.rating }} stars</span>
+      <br/>
+      <span>{{ review.review }}</span>
     </ReviewList>
     <ReviewForm @review-submitted="addReview"></ReviewForm>
   </div>
