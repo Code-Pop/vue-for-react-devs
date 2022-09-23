@@ -1,10 +1,18 @@
 <script setup>
-import { ref, onMounted, computed } from 'vue'
+import { ref, onMounted, computed, watch } from 'vue'
 import ProductDisplay from '@/components/ProductDisplay.vue'
 
 function useCart () {
-  const cart = ref([])
-  const cartCount = computed(() => cart.value.length)
+  const cart = ref(null)
+
+  const cartCount = computed(() => {
+    if (cart.value === null) {
+      return 0
+    }
+    else {
+      return cart.value.length
+    }
+  })
 
   onMounted(() => {
     fetch('http://localhost:3000/cart')
@@ -12,8 +20,22 @@ function useCart () {
       .then(data => cart.value = data.content)
   })
 
+  watch(cart, (value, oldValue) => {
+    if(oldValue === null) return
+
+    fetch('http://localhost:3000/cart', {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        content: value
+      })
+    })
+  })
+
   const updateCart = (id) => {
-    cart.value.push(id)
+    cart.value = cart.value.concat(id)
   }
 
   return { cartCount, updateCart }
