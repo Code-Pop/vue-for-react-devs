@@ -1,9 +1,10 @@
 <script setup>
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, computed } from 'vue'
 import ProductDisplay from '@/components/ProductDisplay.vue'
 
 function useCart () {
   const cart = ref([])
+  const cartCount = computed(() => cart.value.length)
 
   onMounted(() => {
     fetch('http://localhost:3000/cart')
@@ -15,16 +16,16 @@ function useCart () {
     cart.value.push(id)
   }
 
-  return { cart, updateCart }
+  return { cartCount, updateCart }
 }
 
-const { cart, updateCart } = useCart()
+const { cartCount, updateCart } = useCart()
 const premium = ref(true)
 
 </script>
   
 <template>
   <div class="nav-bar"></div>
-  <div class="cart">Cart({{ cart.length }})</div>
+  <div class="cart">Cart({{ cartCount }})</div>
   <ProductDisplay :premium="premium" @add-to-cart="updateCart"></ProductDisplay>
 </template>
