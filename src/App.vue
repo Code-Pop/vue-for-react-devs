@@ -1,25 +1,19 @@
-<script>
+<script setup>
+import { ref, onMounted } from 'vue'
 import ProductDisplay from '@/components/ProductDisplay.vue'
 
-export default({
-  components: { ProductDisplay },
-  data() {
-    return {
-      cart: [],
-      premium: true
-    }
-  },
-  mounted() {
-    fetch('http://localhost:3000/cart')
-      .then(resp => resp.json())
-      .then(data => this.cart = data.content)
-  },
-  methods: {
-    updateCart(id) {
-      this.cart.push(id)
-    }
-  }
+const cart = ref([])
+const premium = ref(true)
+
+onMounted(() => {
+  fetch('http://localhost:3000/cart')
+    .then(resp => resp.json())
+    .then(data => cart.value = data.content)
 })
+
+const updateCart = (id) => {
+  cart.value.push(id)
+}
 </script>
   
 <template>
