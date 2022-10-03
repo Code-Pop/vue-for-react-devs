@@ -21,7 +21,6 @@ const addToCart = () => cart.value += 1
 const updateImage = (variantImage) => {
   image.value = variantImage
 }
-
 </script>
   
 <template>
@@ -41,7 +40,7 @@ const updateImage = (variantImage) => {
         </ul>
         <div 
           v-for="variant in variants" 
-          key="variant.key"
+          :key="variant.id"
           @mouseover="updateImage(variant.image)"
         >
           {{ variant.color }}
