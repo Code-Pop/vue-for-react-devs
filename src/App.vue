@@ -28,7 +28,7 @@ const variants = ref([
         <ul>
           <li v-for="detail in details">{{ detail }}</li>
         </ul>
-        <div v-for="variant in variants" key="variant.key">{{ variant.color }}</div>
+        <div v-for="variant in variants" :key="variant.id">{{ variant.color }}</div>
       </div>
     </div>
   </div>
