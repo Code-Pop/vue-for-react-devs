@@ -70,7 +70,7 @@ const updateVariant = (index) => {
         </ul>
         <div 
           v-for="(variant, index) in variants" 
-          key="variant.key"
+          :key="variant.id"
           @mouseover="updateVariant(index)"
           class="color-circle"
           :style="{ backgroundColor: variant.color }"
