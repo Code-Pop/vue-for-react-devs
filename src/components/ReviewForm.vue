@@ -3,18 +3,20 @@ import { reactive } from 'vue'
 
 const emit = defineEmits(['review-submitted'])
 
-const getDefaultFormData = () => ({
+const review = reactive({
   name: '',
   content: '',
   rating: null
 })
 
-const review = reactive(getDefaultFormData())
-
 const onSubmit = () => {
   const reviewData = JSON.parse(JSON.stringify(review))
   emit('review-submitted', reviewData)
-  Object.assign(review, getDefaultFormData())
+  Object.assign(review, {
+    name: '',
+    content: '',
+    rating: null
+  })
 }
 </script>
 
