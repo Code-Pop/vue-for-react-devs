@@ -1,6 +1,7 @@
 <script setup>
 import { ref, computed } from 'vue'
 import ReviewForm from '@/components/ReviewForm.vue'
+import ReviewList from '@/components/ReviewList.vue'
 import socksGreenImage from '@/assets/images/socks_green.jpeg'
 import socksBlueImage from '@/assets/images/socks_blue.jpeg'
 
@@ -93,6 +94,7 @@ const addReview = (review) => {
         </button>
       </div>
     </div>
+    <ReviewList :reviews="reviews"></ReviewList>
     <ReviewForm @review-submitted="addReview"></ReviewForm>
   </div>
 </template>
